@@ -1,0 +1,10 @@
+data/*
+.idea
+.ipynb_checkpoints
+
+*.h5
+
+*.csv
+
+*.jpg
+*.png
