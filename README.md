@@ -4,29 +4,43 @@
 
 i). Clone the project
 
-```
+```commandline
 git clone https://github.com/RexMudanya/CGIAR-Crop-Yield-Prediction-Challenge.git
 ```
 
-ii). Install packages
-
+ii). Navigate into the project 
+```commandline
+cd CGIAR-Crop-Yield-Prediction-Challenge/
 ```
+
+
+iii). Install packages
+
+```commandline
 pip install -r requirements.txt
 ```
 
-iii). Install [jupyter notebooks](https://jupyter.org/install)
+iv). Install [jupyter notebooks](https://jupyter.org/install)
 
-```
+```commandline
 pip install notebook
 ```
 
-iv). Open terminal/command line (cmd) and run 
+v). Open terminal/command line (cmd) and create a new directory
 
+```commandline
+mkdir data
 ```
+
+vi). download from data [here](https://zindi.africa/competitions/cgiar-crop-yield-prediction-challenge/data) and place in `data/`
+
+vii). Open terminal/command line (cmd) and run 
+
+```commandline
 jupyter notebook
 ```
 
-v). Click on relevant notebook, voila!!!
+viii). Click on relevant notebook, voila!!!
 
 Download data [here](https://zindi.africa/competitions/cgiar-crop-yield-prediction-challenge/data)
 
