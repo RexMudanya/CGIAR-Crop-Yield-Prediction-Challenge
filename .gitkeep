@@ -1,5 +1,5 @@
 data/*
-
+catboost_info
 *.h5
 
 *.csv
