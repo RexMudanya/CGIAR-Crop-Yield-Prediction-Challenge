@@ -8,9 +8,11 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.utils import plot_model
+from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
 from matplotlib import pyplot
 import pandas as pd
 import numpy as np
+import datetime
 
 # Train.csv has the Field_IDs needed to find the npy files
 train = pd.read_csv("data/Train.csv")
@@ -27,8 +29,8 @@ rgb_jan = rgb_jan / np.max(
 )  # Scale band values to (0, 1) for easy image display
 
 
-# There are some hard-coded band indexes in the examples above that won't have made sense - how did we know which bands were which?
-# There are 30 bands for each month. You can see the full list of bands with:
+# There are some hard-coded band indexes in the examples above that won't have made sense - how did we know which
+# bands were which? There are 30 bands for each month. You can see the full list of bands with:
 
 band_names = [
     "0_S2_B1",
@@ -430,11 +432,13 @@ n_inputs = X.shape[1]
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.33, random_state=1
 )
+
 # scale data
 t = MinMaxScaler()
 t.fit(X_train)
 X_train = t.transform(X_train)
 X_test = t.transform(X_test)
+
 # define encoder
 visible = Input(shape=(n_inputs,))
 # encoder level 1
@@ -460,10 +464,22 @@ d = LeakyReLU()(d)
 output = Dense(n_inputs, activation="linear")(d)
 # define autoencoder model
 model = Model(inputs=visible, outputs=output)
+
 # compile autoencoder model
 model.compile(optimizer="adam", loss="mse")
+
 # plot the autoencoder
 plot_model(model, "autoencoder_no_compress.png", show_shapes=True)
+
+# callbacks
+my_callbacks = [
+    TensorBoard(
+        log_dir="./logs/fit" + datetime.datetime.now().strftime("%Y/%m/%d-%H:%M:%S"),
+        histogram_freq=1,
+    ),
+    EarlyStopping(monitor="val_loss", patience=10),
+]
+
 # fit the autoencoder model to reconstruct input
 history = model.fit(
     X_train,
@@ -472,14 +488,18 @@ history = model.fit(
     batch_size=16,
     verbose=2,
     validation_data=(X_test, X_test),
+    callbacks=[my_callbacks]
 )
+
 # plot loss
 pyplot.plot(history.history["loss"], label="train")
 pyplot.plot(history.history["val_loss"], label="test")
 pyplot.legend()
 pyplot.show()
+
 # define an encoder model (without the decoder)
 encoder = Model(inputs=visible, outputs=bottleneck)
+
 plot_model(encoder, "encoder_no_compress.png", show_shapes=True)
 # save the encoder to file
 encoder.save("encoder.h5")
