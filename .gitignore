@@ -2,6 +2,7 @@ data/*
 .idea
 .ipynb_checkpoints
 catboost_info
+logs
 
 *.h5
 

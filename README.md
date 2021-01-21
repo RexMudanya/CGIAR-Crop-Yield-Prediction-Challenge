@@ -42,6 +42,12 @@ jupyter notebook
 
 viii). Click on relevant notebook, voila!!!
 
+### Training the Encoder
+
+1. To train encoder `` python train_encoder.py ``
+1. Launch tensorboard from terminal to visualize logs `` tensorboard --logdir logs/``
+1. Trained encoder saved as `` encoder.h5``
+
 Download data [here](https://zindi.africa/competitions/cgiar-crop-yield-prediction-challenge/data)
 
 Check [Leaderboard](https://zindi.africa/competitions/cgiar-crop-yield-prediction-challenge/leaderboard)

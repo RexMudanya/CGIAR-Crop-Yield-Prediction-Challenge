@@ -1,5 +1,7 @@
 data/*
 catboost_info
+logs
+
 *.h5
 
 *.csv
