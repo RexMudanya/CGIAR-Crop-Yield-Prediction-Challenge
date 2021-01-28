@@ -15,11 +15,11 @@ import numpy as np
 import datetime
 
 # Train.csv has the Field_IDs needed to find the npy files
-train = pd.read_csv("data/Train.csv")
+train = pd.read_csv("../data/Train.csv")
 
 # Look at a sample:
 fid = train["Field_ID"].sample().values[0]
-fn = f"data/image_arrays_train/{fid}.npy"  # File name based on Field_ID
+fn = f"../data/image_arrays_train/{fid}.npy"  # File name based on Field_ID
 print(f"Loading {fn} as an array")
 arr = np.load(fn)  # Loading the data with numpy
 print("Array shape:", arr.shape)  # 360 bands, images 40 or 41px a side
@@ -396,7 +396,7 @@ band_names = [
 ]
 
 
-def process_im(fid, folder="data/image_arrays_train"):
+def process_im(fid, folder="../data/image_arrays_train"):
     fn = f"{folder}/{fid}.npy"
     arr = np.load(fn)
     bands_of_interest = ["S2_B5", "S2_B4", "S2_B3", "S2_B2", "CLIM_pr", "CLIM_soil"]
@@ -469,12 +469,12 @@ model = Model(inputs=visible, outputs=output)
 model.compile(optimizer="adam", loss="mse")
 
 # plot the autoencoder
-plot_model(model, "autoencoder_no_compress.png", show_shapes=True)
+plot_model(model, "../images/autoencoder_no_compress.png", show_shapes=True)
 
 # callbacks
 my_callbacks = [
     TensorBoard(
-        log_dir="./logs/fit" + datetime.datetime.now().strftime("%Y/%m/%d-%H:%M:%S"),
+        log_dir="../logs/fit" + datetime.datetime.now().strftime("%Y/%m/%d-%H:%M:%S"),
         histogram_freq=1,
     ),
     EarlyStopping(monitor="val_loss", patience=10),
@@ -500,6 +500,6 @@ pyplot.show()
 # define an encoder model (without the decoder)
 encoder = Model(inputs=visible, outputs=bottleneck)
 
-plot_model(encoder, "encoder_no_compress.png", show_shapes=True)
+plot_model(encoder, "../images/encoder_no_compress.png", show_shapes=True)
 # save the encoder to file
-encoder.save("encoder.h5")
+encoder.save("../models/encoder.h5")
