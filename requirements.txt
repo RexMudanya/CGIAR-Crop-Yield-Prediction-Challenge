@@ -9,7 +9,7 @@ defusedxml==0.6.0
 entrypoints==0.3
 importlib-metadata==3.4.0
 ipykernel==5.4.3
-ipython==7.16.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipywidgets==7.6.3
 jedi==0.18.0
@@ -83,7 +83,7 @@ h5py==2.10.0
 idna==2.10
 importlib-metadata==3.4.0
 ipykernel==5.4.3
-ipython==7.16.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipywidgets==7.6.3
 jedi==0.18.0
@@ -190,7 +190,7 @@ idna==2.10
 immutables==0.14
 importlib-metadata==3.4.0
 ipykernel==5.4.3
-ipython==7.16.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipywidgets==7.6.3
 jedi==0.18.0
