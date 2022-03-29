@@ -202,7 +202,7 @@ jupyter-client==6.1.11
 jupyter-console==6.2.0
 jupyter-core==4.7.0
 jupyter-kite==2.0.2
-jupyter-server==1.2.2
+jupyter-server==1.15.4
 jupyterlab-pygments==0.1.2
 jupyterlab-widgets==1.0.0
 Keras-Preprocessing==1.1.2
